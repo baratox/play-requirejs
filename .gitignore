@@ -1,6 +1,8 @@
+bin
 logs
 project/project
 project/target
+public/javascripts-built
 target
 tmp
 .history

@@ -1,13 +1,27 @@
-@(title: String)(content: Html)
+@(title: String, module: String)(content: Html)
+
+
+
+
 
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        
+        <script type="text/javascript" src="assets/javascripts/lib/require.js"></script>
+        <script>
+            //Load common code that includes config, then load the app
+            //logic for this page. Do the require calls here instead of
+            //a separate file so after a build there are only 2 HTTP
+            //requests instead of three.
+            require(['./assets/javascripts/common'], function (common) {
+                //js/common sets the baseUrl to be js/ so
+                //can just ask for 'app/main1' here instead
+                //of 'js/app/main1'
+                require(["@module"]);
+            });
+        </script>
     </head>
     <body>
         @content
