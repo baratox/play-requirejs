@@ -17,7 +17,8 @@ object ApplicationBuild extends Build {
   val main = play.Project(appName, appVersion, appDependencies).settings(
     requireJs += "common.js",
     requireJs += "app/main1.js",
-    requireJs += "app/main2.js"
+    requireJs += "app/main2.js",
+    requireJsShim += "build.js"
   )
 
 }
